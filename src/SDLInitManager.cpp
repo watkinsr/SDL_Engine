@@ -8,14 +8,15 @@ SDLInitManager::SDLInitManager() {
 
 	window = NULL;
 	window = SDL_CreateWindow("Game", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
-	if (window == NULL){
+	if (window == NULL) {
 		cout << "panic: Window failed to create at SDL_CreateWindow" << endl;
 	}
 
 	renderer = NULL;
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); 
-
-	mainEvent = new SDL_Event();
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
 }
 
 SDLInitManager::~SDLInitManager(){
@@ -28,13 +29,7 @@ SDL_Renderer* SDLInitManager::GetRenderer(){
 	return renderer;
 }
 
-SDL_Event* SDLInitManager::GetMainEvent(){
-	return mainEvent;
-}
-
 void SDLInitManager::Begin(){
-	SDL_PollEvent(mainEvent);
-	SDL_RenderClear(renderer);
 }
 
 void SDLInitManager::End(){
