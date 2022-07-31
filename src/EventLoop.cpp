@@ -1,4 +1,4 @@
-#include "EventLoop.h"
+#include "../include/EventLoop.h"
 
 EventLoop::EventLoop(int screen_width, int screen_height) {
 	m_screen_width = screen_width;
@@ -10,7 +10,7 @@ EventLoop::EventLoop(int screen_width, int screen_height) {
 EventLoop::~EventLoop(void){}
 
 void EventLoop::Start(){
-	while (m_sdl_init_manager->GetMainEvent()->type != SDL_QUIT){
+	while (m_sdl_init_manager->GetMainSDLEvent()->type != SDL_QUIT){
 		m_sdl_init_manager->Begin();
 	}
 }
